@@ -1,0 +1,3 @@
+[consumers."hello-cardano"]
+wasm-path = "./hello-cardano.wasm"
+
