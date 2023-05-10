@@ -41,6 +41,7 @@
             /* rustToolchain */
             (rust-bin.stable.latest.default.override {
               extensions = [ "rust-src" ];
+              targets = [ "wasm32-unknown-unknown" ];
             })
             mongodb
             mongodb-compass

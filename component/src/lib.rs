@@ -11,7 +11,7 @@ impl Hermes for Host {
 
         let hash_of_first_bytes = match block.raw_bytes.len() {
             0..=9 => vec![], // empty vec if the block is too small
-            _ => host::blake_hash(&block.raw_bytes[0..10]),
+            _ => blake_hash(&block.raw_bytes[0..10]),
         };
 
         let payload = json!({
@@ -21,9 +21,10 @@ impl Hermes for Host {
             "is_prime": prime,
         });
 
+        println!("hello");
         let json_string = to_string_pretty(&payload).unwrap();
 
-        host::publish(&json_string);
+        publish(&json_string);
     }
 
     fn on_new_ethereum(rpc: wit_bindgen::rt::string::String) {
@@ -43,8 +44,9 @@ impl Hermes for Host {
             "is_prime": prime,
         });
 
-        let tweet = format!("look at this cool new eth RPC event: {payload}");
+        let msg = format!("look at this cool new eth RPC event: {payload}");
 
-        host::tweet(&tweet);
+        tweet(&msg);
     }
 }
+
